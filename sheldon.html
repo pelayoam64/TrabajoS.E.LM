@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego Sheldon</title>
+    <script>
+ 
+                //OPCIONES
+       const opciones = ['Papel','Piedra','Tijeras','Lagarto','Spock'];
+ 
+ 
+        var puntosJugador = 0;
+       var puntosMaquina = 0;
+ 
+               //NumeroAletorio
+       function aleatorio(){
+        var indice= Math.floor(Math.random()*opciones.length);
+        return indice;
+       }
+       //EleccionMaquina
+       function maq(){
+        var indice = aleatorio();
+        var opcionMaquina= opciones[indice];
+        return opcionMaquina;
+       }
+       //Enfrentamientos
+       function solucion(opcionJugador, opcionMaquina){
+                var ganar;
+                if(opcionJugador==opcionMaquina){
+                    ganar= 'Empate';
+                }else{
+                    //OPCION PIEDRA
+                    if(opcionJugador== 'Piedra'){
+                        if(opcionMaquina=='Lagarto' || opcionMaquina=='Tijeras'){
+                            ganar='Jugador';
+                        }else{
+                            ganar='IA';
+                        }
+                    }
+                    //OPCION PAPEL
+                    if(opcionJugador=='Papel'){
+ 
+                        if(opcionMaquina=='Piedra' || opcionMaquina=='Spock' ){
+                            ganar='Jugador';
+                        }else{
+                            ganar='IA';
+                        }
+ 
+                    }
+                    //OPCION TIJERAS
+                    if(opcionJugador=='Tijeras'){
+                        if(opcionMaquina=='Papel' || opcionMaquina=='Lagarto' ){
+                            ganar='Jugador';
+                        }else{
+                            ganar='IA';
+                        }
+ 
+                    }
+                    //OPCION LAGARTO
+                    if(opcionJugador=='Lagarto'){
+                        if(opcionMaquina=='Spock' || opcionMaquina=='Papel' ){
+                            ganar='Jugador';
+                        }else{
+                            ganar='IA';
+                        }
+                    }
+                    //OPCION SPOCK
+                    if(opcionJugador=='Spock'){
+                        if(opcionMaquina=='Piedra' || opcionMaquina=='Tijeras' ){
+                            ganar='Jugador';
+                        }else{
+                            ganar='IA';
+                        }
+ 
+                    }
+ 
+            }
+ 
+            if (ganar == 'Jugador'){
+                puntosJugador++;
+                console.log('Ganaste ronda');
+            }
+            else if (ganar == 'IA') {
+                puntosMaquina++;
+                console.log('Perdiste ronda');
+            }
+            else {
+                console.log('Empate en ronda!!! Volver a intentarlo')
+            }
+ 
+        }  
+   
+            //CONSEGUIR RESULTADO
+            function puntos(){
+                console.log('PuntosJugador: ' + puntosJugador);
+                console.log('PuntosMaquina: ' + puntosMaquina);
+               
+ 
+            }
+ 
+ 
+ 
+ 
+ 
+       var partidas= prompt("Cuantas partidas quieres jugar: ");
+ 
+       while(puntosJugador + puntosMaquina < partidas ){
+ 
+            //SI FUERA A 5 PARTIDAS:
+        //while(victoriaJugador + VictoriaMaquina < 5){
+ 
+            var opcionjugador = prompt("Que opcion escoges: ");
+            var opcionMaquina = maq();
+            solucion(opcionjugador,opcionMaquina);
+       }
+ 
+       puntos();
+       </script>
+       
+       <body>
+        </body>
